@@ -2,9 +2,8 @@
 package genericDeser.fileOperations;
 
 public class Logger{
-
-
-    public static enum DebugLevel { CONSTRUCTOR 
+	
+    public static enum DebugLevel {RELEASE, VALIDATEARGS ,METHODCALLED, FILEPROCESSOROBJECT , CONSTRUCTOR
                                    };
 
     private static DebugLevel debugLevel;
@@ -12,7 +11,11 @@ public class Logger{
 
     public static void setDebugValue (int levelIn) {
 	switch (levelIn) {
-	  case 4: debugLevel = DebugLevel.CONSTRUCTOR; break;
+		case 0: debugLevel = DebugLevel.RELEASE; break;
+		case 1: debugLevel = DebugLevel.VALIDATEARGS; break;
+		case 2: debugLevel = DebugLevel.METHODCALLED; break;
+		case 3: debugLevel = DebugLevel.FILEPROCESSOROBJECT; break;
+		case 4: debugLevel = DebugLevel.CONSTRUCTOR; break;
 	}
     }
 
@@ -20,8 +23,7 @@ public class Logger{
 	debugLevel = levelIn;
     }
 
-    // @return None
-    public static void writeMessage (String     message  ,
+    public static void writeMessage (String  message  ,
                                      DebugLevel levelIn ) {
 	if (levelIn == debugLevel)
 	    System.out.println(message);

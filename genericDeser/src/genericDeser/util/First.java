@@ -88,4 +88,61 @@ public class First {
 	public void setCharValue(char charValue) {
 		CharValue = charValue;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (BooleanValue ? 1231 : 1237);
+		result = prime * result + ByteValue;
+		result = prime * result + CharValue;
+		long temp;
+		temp = Double.doubleToLongBits(DoubleValue);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + Float.floatToIntBits(FloatValue);
+		result = prime * result + IntValue;
+		result = prime * result + (int) (LongValue ^ (LongValue >>> 32));
+		result = prime * result + ShortValue;
+		result = prime * result
+				+ ((StringValue == null) ? 0 : StringValue.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		First other = (First) obj;
+		if (BooleanValue != other.BooleanValue)
+			return false;
+		if (ByteValue != other.ByteValue)
+			return false;
+		if (CharValue != other.CharValue)
+			return false;
+		if (Double.doubleToLongBits(DoubleValue) != Double
+				.doubleToLongBits(other.DoubleValue))
+			return false;
+		if (Float.floatToIntBits(FloatValue) != Float
+				.floatToIntBits(other.FloatValue))
+			return false;
+		if (IntValue != other.IntValue)
+			return false;
+		if (LongValue != other.LongValue)
+			return false;
+		if (ShortValue != other.ShortValue)
+			return false;
+		if (StringValue == null) {
+			if (other.StringValue != null)
+				return false;
+		} else if (!StringValue.equals(other.StringValue))
+			return false;
+		return true;
+	}
+
+		
+	
 }

@@ -3,33 +3,38 @@ package genericDeser.fileOperations;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+
+/**
+ * FileProcessor is used to 
+ * process file operations
+ * @author shubham
+ * 
+ */
 public class FileProcessor {
-	private String str=null;
-	private BufferedReader br;
+	BufferedReader in;
+	String read;
 
-	/**
-	 * Constructor
-	 * @param brIn
-	 */
-	public FileProcessor(BufferedReader brIn){
-
-		Logger.writeMessage("Constructor of FileProcessor Called", Logger.DebugLevel.CONSTRUCTORCALLED);
-		this.br = brIn;
-	}
 	
-	/**
-	 * Method to read from a file
-	 * @param br - Buffered Reader object
-	 * @return string
-	 */
-	public String readFile(){
-		try {
-			str = br.readLine();
-		} catch (IOException e) {
-			System.out.println("Error while reading file");
-			System.exit(1);
-		}
-		return str;
+	public FileProcessor(BufferedReader bufReaderIn) {
+		Logger.writeMessage("In FileProcessor, BufferedReader constructor",
+				Logger.DebugLevel.CONSTRUCTOR);
+		in = bufReaderIn;
 	}
 
+		
+	/**
+	 * * readLineFromFile is used to read contents of input
+	 * file.
+	 * @return String as output
+	 */
+	
+	public synchronized String readLineFromFile() {
+		try {
+			read = in.readLine();
+		} catch (IOException e) {
+			System.err.println("Error in Reading File");
+			e.printStackTrace();
+		}
+		return read;
+	}
 }

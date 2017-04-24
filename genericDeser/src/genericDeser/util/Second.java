@@ -43,5 +43,44 @@ public class Second {
 	public void setStringValue(String stringValue) {
 		StringValue = stringValue;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(DoubleValue);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + (int) (LongValue ^ (LongValue >>> 32));
+		result = prime * result + ShortValue;
+		result = prime * result
+				+ ((StringValue == null) ? 0 : StringValue.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Second other = (Second) obj;
+		if (Double.doubleToLongBits(DoubleValue) != Double
+				.doubleToLongBits(other.DoubleValue))
+			return false;
+		if (LongValue != other.LongValue)
+			return false;
+		if (ShortValue != other.ShortValue)
+			return false;
+		if (StringValue == null) {
+			if (other.StringValue != null)
+				return false;
+		} else if (!StringValue.equals(other.StringValue))
+			return false;
+		return true;
+	}
+
 	
 }

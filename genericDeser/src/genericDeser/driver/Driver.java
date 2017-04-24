@@ -4,6 +4,7 @@ package genericDeser.driver;
 
 import genericDeser.fileOperations.FileProcessor;
 import genericDeser.fileOperations.Logger;
+import genericDeser.util.PopulateObjects;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -39,6 +40,8 @@ public class Driver {
 		Logger.setDebugValue(debug_value);
 		FileProcessor fileProcessor = new FileProcessor(
 				bufferedReaderInput);
+		Logger.writeMessage("FileProcessor Object created", Logger.DebugLevel.FILEPROCESSOROBJECT);
+		PopulateObjects populateObjects = new PopulateObjects(fileProcessor);
 		
 	}
 
