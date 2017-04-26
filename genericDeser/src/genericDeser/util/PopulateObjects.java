@@ -103,10 +103,63 @@ public class PopulateObjects {
 			e.printStackTrace();
 		}
 		}
+		if(classname!=null && classname.equalsIgnoreCase("genericDeser.util.First")){
+			if(map1.containsKey(obj)){
+				int count = map1.get(obj);
+				count++;
+				map1.put((First) obj, count);
+			}
+			else{
+				map1.put((First) obj, 1);
+			}
+		}
+		else if(classname!=null && classname.equalsIgnoreCase("genericDeser.util.Second")){
+			if(map2.containsKey(obj)){
+				int count = map2.get(obj);
+				count ++;
+				map2.put((Second) obj, count);
+			}
+			else{
+				map2.put((Second) obj, 1);
+			}
+		}
 	}
 
 	private Object objType(String value, String type) {
-		// TODO Auto-generated method stub
-		return null;
+		Object object = null;
+		try{
+		if(type.equalsIgnoreCase("int")){
+			object = Integer.parseInt(value);
+		}
+		else if(type.equalsIgnoreCase("String")){
+			object = value;
+		}
+		else if(type.equalsIgnoreCase("short")){
+			object = Short.parseShort(value);
+		}
+		else if(type.equalsIgnoreCase("double")){
+			object = Double.parseDouble(value);
+		}
+		else if(type.equalsIgnoreCase("float")){
+			object = Float.parseFloat(value);
+		}
+		else if(type.equalsIgnoreCase("byte")){
+			object = Byte.parseByte(value);
+		}
+		else if(type.equalsIgnoreCase("long")){
+			object = Long.parseLong(value);
+		}
+		else if(type.equalsIgnoreCase("boolean")){
+			object = Boolean.parseBoolean(value);
+		}
+		else if(type.equalsIgnoreCase("char")){
+			if(value.length()==1){
+			object = value.charAt(0);
+			}
+		}
+		}catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+		return object;
 	}
 }
