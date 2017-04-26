@@ -1,7 +1,10 @@
 package genericDeser.util;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+
 
 import genericDeser.fileOperations.FileProcessor;
 import genericDeser.fileOperations.Logger;
@@ -70,11 +73,40 @@ public class PopulateObjects {
 				cls = Class.forName(classname);
 				obj = cls.newInstance();
 			}
-		
+			else if(rslt.contains("int")||rslt.contains("float")||rslt.contains("double")||rslt.contains("short")||rslt.contains("String")||rslt.contains("byte")||rslt.contains("long")||rslt.contains("boolean")||rslt.contains("char")){
+				String sub[]=rslt.split(",");
+				sub[1] = sub[1].replaceAll(" ", "");
+				sub[2] = sub[2].replaceAll(" ", "");
+				String sub1[] = sub[0].split("=");
+				String sub2[] = sub[1].split("=");
+				String sub3[] = sub[2].split("=");
+				type = sub1[1];
+				methodName = sub2[1];
+				value = sub3[1];
+				Class c = map.get(type);
+				Method m1 = cls.getMethod("set"+methodName, c);
+				Object ob1 = objType(value,type);
+				Object result = m1.invoke(obj, ob1);
+			}
 		}
-		catch(Exception e){
-			System.out.println(e);
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}catch (NoSuchMethodException e){
+			e.printStackTrace();
+		}catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}catch (InvocationTargetException e) {
+			e.printStackTrace();
 		}
 		}
+	}
+
+	private Object objType(String value, String type) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
