@@ -3,50 +3,21 @@ package genericDeser.util;
 import genericDeser.fileOperations.Logger;
 
 public class First {
-	private int IntValue;
-	private String StringValue; 
-	private short ShortValue;
-	private float FloatValue;
 	private byte ByteValue;
+	private short ShortValue;
+	private int IntValue; 
 	private long LongValue;
+	private float FloatValue;
 	private double DoubleValue;
 	private boolean BooleanValue;
 	private char CharValue;
+	private String StringValue;
 	
+	/**
+	 * First class constructor
+	 */
 	public First(){
 		Logger.writeMessage("Constructor of First Called",Logger.DebugLevel.CONSTRUCTOR);
-	}
-
-	public int getIntValue() {
-		return IntValue;
-	}
-
-	public void setIntValue(int intValue) {
-		IntValue = intValue;
-	}
-
-	public String getStringValue() {
-		return StringValue;
-	}
-
-	public void setStringValue(String stringValue) {
-		StringValue = stringValue;
-	}
-
-	public short getShortValue() {
-		return ShortValue;
-	}
-
-	public void setShortValue(short shortValue) {
-		ShortValue = shortValue;
-	}
-
-	public float getFloatValue() {
-		return FloatValue;
-	}
-
-	public void setFloatValue(float floatValue) {
-		FloatValue = floatValue;
 	}
 
 	public byte getByteValue() {
@@ -57,12 +28,36 @@ public class First {
 		ByteValue = byteValue;
 	}
 
+	public short getShortValue() {
+		return ShortValue;
+	}
+
+	public void setShortValue(short shortValue) {
+		ShortValue = shortValue;
+	}
+
+	public int getIntValue() {
+		return IntValue;
+	}
+
+	public void setIntValue(int intValue) {
+		IntValue = intValue;
+	}
+
 	public long getLongValue() {
 		return LongValue;
 	}
 
 	public void setLongValue(long longValue) {
 		LongValue = longValue;
+	}
+
+	public float getFloatValue() {
+		return FloatValue;
+	}
+
+	public void setFloatValue(float floatValue) {
+		FloatValue = floatValue;
 	}
 
 	public double getDoubleValue() {
@@ -89,6 +84,16 @@ public class First {
 		CharValue = charValue;
 	}
 
+	public String getStringValue() {
+		return StringValue;
+	}
+
+	public void setStringValue(String stringValue) {
+		StringValue = stringValue;
+	}
+	/**
+	 * hashcode implementation
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -142,7 +147,6 @@ public class First {
 			return false;
 		return true;
 	}
-
-		
 	
-}
+
+	}

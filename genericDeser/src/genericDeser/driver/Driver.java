@@ -21,19 +21,19 @@ import java.io.InputStreamReader;
  * 
  */
 public class Driver {
-
-	/**
-	 * main method to start the program
-	 * 
-	 * @param args
-	 *            = 3 arguments are passed from command line
-	 */
 	
 	private static String input;
 	private static int debug_value;
 	public static BufferedReader bufferedReaderInput;
 	public static BufferedWriter bufferedWriterOutput;
    
+
+	/**
+	 * main method to start the program
+	 * 
+	 * @param args
+	 *            = 2 arguments are passed from command line
+	 */
 	public static void main(String args[]) {
 		Driver dr = new Driver();
 		dr.validateArgs(args);
@@ -42,9 +42,13 @@ public class Driver {
 				bufferedReaderInput);
 		Logger.writeMessage("FileProcessor Object created", Logger.DebugLevel.FILEPROCESSOROBJECT);
 		PopulateObjects populateObjects = new PopulateObjects(fileProcessor);
-		
+		populateObjects.deserObjects();
+		populateObjects.printResult();
 	}
-
+	/**
+	 * validateArgs method used for validation
+	 * @param args = argument passed as String
+	 */
 	private void validateArgs(String args[]) {
 		if (args.length == 2) {
 			input = args[0];

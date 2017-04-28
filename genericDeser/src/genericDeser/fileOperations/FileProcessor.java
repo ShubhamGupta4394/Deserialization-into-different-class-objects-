@@ -14,7 +14,10 @@ public class FileProcessor {
 	BufferedReader in;
 	String read;
 
-	
+	/**
+	 * FileProcessor constructor 
+	 * @param bufReaderIn = BufferReader Object
+	 */
 	public FileProcessor(BufferedReader bufReaderIn) {
 		Logger.writeMessage("In FileProcessor, BufferedReader constructor",
 				Logger.DebugLevel.CONSTRUCTOR);

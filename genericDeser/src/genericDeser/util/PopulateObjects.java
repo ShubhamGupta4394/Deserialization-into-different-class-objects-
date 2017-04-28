@@ -9,27 +9,40 @@ import java.util.Map;
 import genericDeser.fileOperations.FileProcessor;
 import genericDeser.fileOperations.Logger;
 
+/**
+ * PopulateObjects Class to do operation
+ * @author shubham
+ *
+ */
 public class PopulateObjects {
 	private Map<String, Class> map;
 	private Map<First,Integer> map1 = new HashMap<First, Integer>();
 	private Map<Second,Integer> map2 = new HashMap<Second, Integer>();
 	private FileProcessor fp;
 	
+	/**
+	 * PopulateObjects constructor
+	 * @param fileProcessor = fileProcessor object
+	 * 						  passed as argument
+	 */
 	public PopulateObjects(FileProcessor fileProcessor) {
 		Logger.writeMessage("Constructor of PopulateObjects", Logger.DebugLevel.CONSTRUCTOR);
 		fp = fileProcessor;
 		map = new HashMap<String, Class>();
-		map.put("int",Integer.TYPE);
-		map.put("String", String.class);
-		map.put("short", Short.TYPE);
-		map.put("double",Double.TYPE);
-		map.put("float", Float.TYPE);
 		map.put("byte", Byte.TYPE);
+		map.put("short", Short.TYPE);
+		map.put("int",Integer.TYPE);
 		map.put("long", Long.TYPE);
+		map.put("float", Float.TYPE);
+		map.put("double",Double.TYPE);
 		map.put("boolean", Boolean.TYPE);
 		map.put("char", Character.TYPE);
+		map.put("String", String.class);
 	}
     
+	/**
+	 * deserObjects to deseralize object
+	 */
 	public void deserObjects(){
 		String str,rslt;
 		String classname = null;
@@ -43,7 +56,10 @@ public class PopulateObjects {
 		{
 			rslt = str.replaceAll("[<>]", "");
 		try{
-			if(rslt.contains("fqn")){
+			if(rslt.contains("/")){
+				continue;
+			}
+			else if(rslt.contains("fqn")){
 				if(!(classname==null)){
 					if(classname.equalsIgnoreCase("genericDeser.util.First")){
 						if(map1.containsKey(obj)){
@@ -124,7 +140,12 @@ public class PopulateObjects {
 			}
 		}
 	}
-
+	/**
+	 * objType method to determine Object from type
+	 * @param value = string value
+	 * @param type = string type
+	 * @return Object return
+	 */
 	private Object objType(String value, String type) {
 		Object object = null;
 		try{
@@ -161,5 +182,23 @@ public class PopulateObjects {
 			e.printStackTrace();
 		}
 		return object;
+	}
+	
+	/**
+	 * printResult to print the result
+	 */
+	public void printResult(){
+		Logger.writeMessage("Number of unique First objects:"+map1.size(), Logger.DebugLevel.RELEASE);
+		int rslt1 = 0;
+		for(int i:map1.values()){
+			rslt1 += i;
+		}
+		Logger.writeMessage("Total Number of First objects:"+rslt1, Logger.DebugLevel.RELEASE);
+	    Logger.writeMessage("Number of unique Second objects:"+map2.size(), Logger.DebugLevel.RELEASE);
+	    int rslt2 = 0;
+	    for(int j:map2.values()){
+	    	rslt2 += j;
+	    }
+	    Logger.writeMessage("Total Number of Second object:"+rslt2, Logger.DebugLevel.RELEASE);
 	}
 }
