@@ -179,7 +179,9 @@ public class PopulateObjects {
 			}
 		}
 		}catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			System.out.println(e);
+			System.out.println("Cannot cast type:"+type +"to object");
+			System.exit(-1);
 		}
 		return object;
 	}

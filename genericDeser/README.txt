@@ -11,7 +11,7 @@ ant -buildfile src/build.xml all
 -----------------------------------------------------------------------
 ## To run by specifying arguments from command line 
 ## We will use this to run your code
-ant -buildfile src/build.xml run -Darg0=firstarg -Darg1=SECOND -Darg2=THIRD
+ant -buildfile src/build.xml run -Darg0=firstarg -Darg1=secondarg 
 
 -----------------------------------------------------------------------
 
@@ -29,12 +29,17 @@ grade of 0 for the involved assignment for my first offense and that I
 will receive a grade of F for the course for any additional
 offense.”
 
-[Date: ] -- Please add the date here
+[Date: ] -- 04/28/2017
 
 -----------------------------------------------------------------------
 
 Provide justification for Data Structures used in this assignment in
 term of Big O complexity (time and/or space)
+
+LinkedHashMap - I have used LinkedHashMap to store Objects and their Integer count, also for
+Data Member type and class because it maintains order, as well as
+it can handle key value pair, which makes it better than other data structure.
+Time Complexity for operations in LinkedHashMap is O(1).
 
 
 -----------------------------------------------------------------------
@@ -42,3 +47,5 @@ term of Big O complexity (time and/or space)
 Provide list of citations (urls, etc.) from where you have taken code
 (if any).
 
+For Time Complexity -
+shttp://stackoverflow.com/questions/559839/big-o-summary-for-java-collections-framework-implementations.
