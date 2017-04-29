@@ -51,7 +51,6 @@ public class PopulateObjects {
 		String methodName = null;
 		Class cls = null;
 		Object obj = null;
-		
 		while((str=fp.readLineFromFile())!=null)
 		{
 			rslt = str.replaceAll("[<>]", "");
@@ -59,7 +58,7 @@ public class PopulateObjects {
 			if(rslt.contains("/")){
 				continue;
 			}
-			else if(rslt.contains("fqn")){
+			else if(rslt.contains("fqn:")){
 				if(!(classname==null)){
 					if(classname.equalsIgnoreCase("genericDeser.util.First")){
 						if(map1.containsKey(obj)){
@@ -85,9 +84,11 @@ public class PopulateObjects {
 					}
 				}
 				String arr[] = rslt.split(":");
+				if(arr.length>1){
 				classname = arr[1];
 				cls = Class.forName(classname);
 				obj = cls.newInstance();
+				}
 			}
 			else if(rslt.contains("int")||rslt.contains("float")||rslt.contains("double")||rslt.contains("short")||rslt.contains("String")||rslt.contains("byte")||rslt.contains("long")||rslt.contains("boolean")||rslt.contains("char")){
 				String sub[]=rslt.split(",");
