@@ -51,9 +51,19 @@ public class PopulateObjects {
 		String methodName = null;
 		Class cls = null;
 		Object obj = null;
+		StringBuilder sb=null;
+		int i=0;
 		while((str=fp.readLineFromFile())!=null)
 		{
-			rslt = str.replaceAll("[<>]", "");
+			char first = str.charAt(0);
+			char last = str.charAt(str.length()-1);
+			if(first == '<' && last == '>'){
+			 sb = new StringBuilder(str);
+			 sb.setCharAt(0, ' ');
+			 sb.setCharAt(sb.length()-1, ' ');
+			}
+			i++;
+			rslt = sb.toString().trim();
 		try{
 			if(rslt.contains("/")){
 				continue;
@@ -91,14 +101,17 @@ public class PopulateObjects {
 				}
 			}
 			else if(rslt.contains("int")||rslt.contains("float")||rslt.contains("double")||rslt.contains("short")||rslt.contains("String")||rslt.contains("byte")||rslt.contains("long")||rslt.contains("boolean")||rslt.contains("char")){
-				String sub[]=rslt.split(",");
-				sub[1] = sub[1].replaceAll(" ", "");
-				sub[2] = sub[2].replaceAll(" ", "");
+				String sub[]=rslt.split(", ");
 				String sub1[] = sub[0].split("=");
 				String sub2[] = sub[1].split("=");
 				String sub3[] = sub[2].split("=");
 				type = sub1[1];
 				methodName = sub2[1];
+				if(sub3.length==1){
+					value = null;
+					Logger.writeMessage("Value is empty initialized to null at Line"+ i, Logger.DebugLevel.RELEASE);
+				}
+				else
 				value = sub3[1];
 				Class c = map.get(type);
 				Method m1 = cls.getMethod("set"+methodName, c);
@@ -176,7 +189,8 @@ public class PopulateObjects {
 		}
 		else if(type.equalsIgnoreCase("char")){
 			if(value.length()==1){
-			object = value.charAt(0);
+			Character z = value.charAt(0);
+			object = z;
 			}
 		}
 		}catch (IllegalArgumentException e) {
