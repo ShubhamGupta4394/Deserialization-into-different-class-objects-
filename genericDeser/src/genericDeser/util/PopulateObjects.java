@@ -52,7 +52,6 @@ public class PopulateObjects {
 		Class cls = null;
 		Object obj = null;
 		StringBuilder sb=null;
-		int i=0;
 		while((str=fp.readLineFromFile())!=null)
 		{
 			char first = str.charAt(0);
@@ -62,10 +61,9 @@ public class PopulateObjects {
 			 sb.setCharAt(0, ' ');
 			 sb.setCharAt(sb.length()-1, ' ');
 			}
-			i++;
 			rslt = sb.toString().trim();
 		try{
-			if(rslt.contains("/")){
+			if(rslt.contains("/fqn:")){
 				continue;
 			}
 			else if(rslt.contains("fqn:")){
@@ -109,7 +107,6 @@ public class PopulateObjects {
 				methodName = sub2[1];
 				if(sub3.length==1){
 					value = null;
-					Logger.writeMessage("Value is empty initialized to null at Line"+ i, Logger.DebugLevel.RELEASE);
 				}
 				else
 				value = sub3[1];
@@ -188,11 +185,12 @@ public class PopulateObjects {
 			object = Boolean.parseBoolean(value);
 		}
 		else if(type.equalsIgnoreCase("char")){
-			if(value.length()==1){
-			Character z = value.charAt(0);
-			object = z;
+			if(value==null){
+			object = 'a';
 			}
-		}
+			else
+			object = value.charAt(0);
+			}
 		}catch (IllegalArgumentException e) {
 			System.out.println(e);
 			System.out.println("Cannot cast type:"+type +"to object");
